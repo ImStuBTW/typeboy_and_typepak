@@ -1,0 +1,238 @@
+units:
+  # Proxy Spacing Variables
+  kx: cx
+  ky: cy
+  # Padding Variables
+  px: kx + 4
+  py: ky + 4
+points:
+  zones:
+    # The primary 6x4 key matrix, plus 3 modifiers.
+    matrix:
+      # Position in center of KiCAD workspace.
+      anchor:
+        shift: [100, -200]
+      # Choc spacing
+      key:
+        padding: 1ky
+        spread: 1kx
+      columns:
+        # Hide the first two mods and the last mod.
+        # Provide a Sofle-like column stagger.
+        outer:
+          rows.mod.skip: true
+          key.column_net: col0
+        pinky:
+          rows.mod.skip: true
+          key:
+            splay: -2
+            stagger: 2.5
+            column_net: col1
+        ring:
+          key:
+            splay: -2
+            stagger: 5
+            column_net: col2
+          rows.mod.column_net: col1
+        middle:
+          key:
+            stagger: 2.5
+            column_net: col3
+          rows.mod.column_net: col2
+        index:
+          key:
+            stagger: -2.5
+            column_net: col4
+          rows.mod.column_net: col3
+        inner:
+          rows.mod.skip: true
+          key:
+            stagger: -2.5
+            column_net: col5
+      rows:
+        # Four main rows, one partial row.
+        mod:
+          row_net: row4
+        bottom:
+          row_net: row3
+        home:
+          row_net: row2
+        top:
+          row_net: row1
+        num:
+          row_net: row0
+    # Thumb cluster for Layer and Space keys.
+    thumbs:
+      # Choc spacing
+      key:
+        padding: 1ky
+        spread: 1kx
+      # Place thumbs where the inner mod would go.
+      anchor:
+        ref: matrix_inner_mod
+        shift: [1.5, -2]
+      columns:
+        # Fan thumbs out by -15 degrees.
+        layer:
+          key:
+            splay: -15
+            column_net: col4
+        # Spacebar uses a 1.5 wide key.
+        space:
+          key:
+            column_net: col5
+            width: 1.5kx
+            splay: 75
+            shift: [0,-2]
+      rows:
+        # Thumbs only have one row.
+        cluster:
+          row_net: row4
+  rotate: 4
+outlines:
+  # Pure key outline.
+  _raw:
+    - what: rectangle
+      where: true
+      size: [px, py]
+  # Key outlines with 0.5mm removed to show key overlaps.
+  _keys:
+    - what: rectangle
+      where: true
+      size: [kx-0.5,ky-0.5]
+  _top-left-corner:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_num
+          shift: [-0.5px,0.5py]
+        - ref: matrix_outer_num
+          shift: [0.5px,0.5py]
+        - ref: matrix_pinky_num
+          shift: [0.5px-1,0.5py]
+        - ref: matrix_ring_num
+          shift: [-0.5px+0.5,0.5py]
+        - ref: matrix_ring_num
+          shift: [0.5kx-2,0.5py]
+        - ref: matrix_ring_num
+          shift: [0.5kx-2,-0.5py]
+  _bottom-left-corner:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_ring_mod
+          shift: [-0.5px,-0.5py]
+        - ref: matrix_ring_mod
+          shift: [-0.5px,0.5py]
+  _controller:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_index_num
+          shift: [0.5px,0.5ky]
+        - ref: matrix_index_num
+          shift: [2.42px,0.5ky]
+        - ref: thumbs_space_cluster
+          shift: [0.5px,-0.5py]
+        - ref: thumbs_space_cluster
+          shift: [-0.5px,-0.5py]
+        - ref: thumbs_layer_cluster
+          shift: [0.5px,-0.5py]
+        - ref: thumbs_layer_cluster
+          shift: [-0.525px,-0.5py]
+  # Combination preview showing outline and keys.
+  _border:
+    - name: _raw
+    - operation: add
+      name: _top-left-corner
+    - operation: add
+      name: _bottom-left-corner
+    - operation: add
+      name: _controller
+      fillet: 1
+  # Combination preview showing outline and keys.
+  _combo:
+    - name: _border
+    - operation: subtract
+      name: _keys
+pcbs:
+  typeboy:
+    outlines.main.outline: _border
+    footprints:
+      # Hotswap Choc keys.
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      # Through Hole or SMD Diodes
+      diode:
+        what: diode
+        where: true
+        params:
+          from: "{{colrow}}"
+          to: "{{row_net}}"
+        adjust:
+          shift: [0, -5]
+      # Reversible GBA Cartridge Slot
+      gba:
+        what: gbareversible
+        where:
+          ref: matrix_inner_top
+          shift: [0.85px,-0.6py+0.012491]
+          rotate: -90
+      lowproro:
+        what: lowproro
+        params:
+          A: MISO
+          PUSH: NFC0
+          COM: GND
+          B: NFC1
+        where:
+          ref: matrix_pinky_bottom
+          shift: [-0.05px+0.35, -0.6py+1.5]
+          #rotate: -16.5
+          rotate: -13
+      power:
+        what: spdt
+        params:
+          from: BATOUT
+          to: BATIN
+        where:
+          ref: matrix_inner_num
+          shift: [1.35px, 0.45ky]
+          rotate: 180
+      reset:
+        what: buttonrightangle
+        params:
+          from: GND
+          to: RST
+        where:
+          ref: matrix_inner_num
+          shift: [0.65px, 0.4275ky]
+      mounting_thumb:
+        what: mountinghole
+        where:
+          ref: matrix_inner_bottom
+          shift: [0.65px, -0.65ky]
+      mounting_top:
+        what: mountinghole
+        where:
+          ref: matrix_inner_num
+          shift: [1.25px, 0.1ky]
+      mounting_rotary:
+        what: mountinghole
+        where:
+          ref: matrix_outer_bottom
+          shift: [0.25px, -0.7ky]
+      mounting_corner:
+        what: mountinghole
+        where:
+          - ref.aggregate.parts: [matrix_outer_num, matrix_pinky_num]
+            shift: [0.0px, -0.4ky]

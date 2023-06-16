@@ -1,0 +1,7 @@
+config SHIELD_TYPEBOY_LEFT
+	def_bool $(shields_list_contains,typeboy_left)
+    select SPI
+
+config SHIELD_TYPEBOY_RIGHT
+	def_bool $(shields_list_contains,typeboy_right)
+    select SPI
