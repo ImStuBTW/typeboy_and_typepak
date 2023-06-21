@@ -1,1 +1,5 @@
 #include "typeboy.dtsi"
+
+&left_encoder {
+    status = "okay";
+};

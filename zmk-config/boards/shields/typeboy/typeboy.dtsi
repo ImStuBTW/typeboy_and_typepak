@@ -22,16 +22,10 @@
 		label = "DISPLAY";
 		spi-max-frequency = <2000000>;
 		reg = <1>;
-		width = <144>;
-		height = <168>;
+		width = <160>;
+		height = <68>;
 	};
 
-};
-
-/ {
-  chosen {
-    zephyr,display = &sharp;
-  };
 };
 
 &xiao_serial { status = "disabled"; };
@@ -53,60 +47,68 @@
           RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                 RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(2,10) RC(2,11)
           RC(3,0) RC(3,1) RC(3,2) RC(3,3) RC(3,4) RC(3,5)                 RC(3,6) RC(3,7) RC(3,8) RC(3,9) RC(3,10) RC(3,11)
                           RC(4,1) RC(4,2) RC(4,3) RC(4,4) RC(4,5) RC(4,6) RC(4,7) RC(4,8) RC(4,9) RC(4,10)
-          RC(5,0) RC(5,1) RC(5,2)
+          RC(5,0) RC(5,6)
         >;
     };
 
     kscan0: kscan_composite {
-		compatible = "zmk,kscan-composite";
-		label = "KSCAN0";
-		columns = <12>;
-		rows = <6>;
+			compatible = "zmk,kscan-composite";
+			label = "KSCAN0";
+			columns = <12>;
+			rows = <6>;
 
-		// Include the matrix driver
-		matrix {
-				kscan = <&kscan1>;
+			matrix {
+					kscan = <&kscan1>;
+			};
+
+			direct {
+					kscan = <&kscan2>;
+					row-offset = <5>;
+			};
 		};
 
-		// Include the direct GPIO driver...
-		direct {
-				kscan = <&kscan2>;
-				row-offset = <5>;
+		kscan1: kscan_matrix {
+			compatible = "zmk,kscan-gpio-matrix";
+			label = "MATRIX_KSCAN";
+
+			diode-direction = "col2row"; 
+
+			col-gpios
+					= <&shift_reg 0 (GPIO_ACTIVE_HIGH)>
+					, <&shift_reg 1 (GPIO_ACTIVE_HIGH)>
+					, <&shift_reg 2 (GPIO_ACTIVE_HIGH)>
+					, <&shift_reg 3 (GPIO_ACTIVE_HIGH)>
+					, <&shift_reg 4 (GPIO_ACTIVE_HIGH)>
+					, <&shift_reg 5 (GPIO_ACTIVE_HIGH)>
+					;
+
+			row-gpios
+					= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+					, <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+					, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+					, <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+					, <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+					;
 		};
-	};
 
-	kscan1: kscan_matrix {
-		compatible = "zmk,kscan-gpio-matrix";
-		label = "MATRIX_KSCAN";
+		kscan2: kscan_direct {
+			compatible = "zmk,kscan-gpio-direct";
+			debounce-period = <50>;
+			label = "ENCODER_KSCAN";
+			input-gpios	=  <&gpio0 9 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+		};
 
-		diode-direction = "col2row"; 
+		left_encoder: encoder_left {
+			compatible = "alps,ec11";
+			label = "LEFT_ENCODER";
+			a-gpios = <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+			b-gpios = <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+			resolution = <4>;
+			status = "disabled";
+		};
 
-		col-gpios
-				= <&shift_reg 0 (GPIO_ACTIVE_HIGH)>
-				, <&shift_reg 1 (GPIO_ACTIVE_HIGH)>
-				, <&shift_reg 2 (GPIO_ACTIVE_HIGH)>
-				, <&shift_reg 3 (GPIO_ACTIVE_HIGH)>
-				, <&shift_reg 4 (GPIO_ACTIVE_HIGH)>
-				, <&shift_reg 5 (GPIO_ACTIVE_HIGH)>
-				;
-
-		row-gpios
-				= <&xiao_d 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-				, <&xiao_d 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-				, <&xiao_d 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-				, <&xiao_d 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-				, <&xiao_d 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-				;
-	};
-
-	kscan2: kscan_direct {
-		compatible = "zmk,kscan-gpio-direct";
-		debounce-period = <50>;
-		label = "ENCODER_KSCAN";
-		input-gpios
-			= <&xiao_d 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&gpio0 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			, <&gpio0 10 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-			;
-	};
+		sensors {
+			compatible = "zmk,keymap-sensors";
+			sensors = <&left_encoder>;
+		};
 };

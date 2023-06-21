@@ -67,7 +67,7 @@
       (mirror false)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "./foxboy-gerbers")
+      (outputdirectory "./typeboy-gerbers")
     )
   )
 

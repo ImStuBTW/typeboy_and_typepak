@@ -6,6 +6,7 @@ requires: [seeeduino_xiao_ble]
 features:
   - keys
   - display
+  - encoder
 siblings:
   - typeboy_left
   - typeboy_right
