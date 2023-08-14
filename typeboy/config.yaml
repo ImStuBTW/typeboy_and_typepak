@@ -5,6 +5,13 @@ units:
   # Padding Variables
   px: kx + 4
   py: ky + 4
+  # Enclosure Variables
+  ex: kx + 8
+  ey: ky + 8
+  # Standoff Variables
+  standoff_size: 2.5
+  insert_size: 1.5
+  foot_size: 3
 points:
   zones:
     # The primary 6x4 key matrix, plus 3 modifiers.
@@ -143,7 +150,7 @@ outlines:
         - ref: thumbs_layer_cluster
           shift: [-0.525px,-0.5py]
   # Combination preview showing outline and keys.
-  _border:
+  border:
     - name: _raw
     - operation: add
       name: _top-left-corner
@@ -153,13 +160,245 @@ outlines:
       name: _controller
       fillet: 1
   # Combination preview showing outline and keys.
-  _combo:
-    - name: _border
+  combo:
+    - name: border
     - operation: subtract
       name: _keys
+  # Mounting Holes
+    # Standoffs
+  _mount_thumb:
+    - what: circle
+      radius: insert_size
+      where:
+        ref: matrix_inner_bottom
+        shift: [0.65px, -0.65ky]
+  _mount_top:
+    - what: circle
+      radius: insert_size
+      where:
+          ref: matrix_inner_num
+          shift: [1.25px, 0.1ky]
+  _mount_rotary:
+    - what: circle
+      radius: insert_size
+      where:
+        ref: matrix_outer_bottom
+        shift: [0.25px, -0.7ky]
+  _mount_corner:
+    - what: circle
+      radius: insert_size
+      where:
+        - ref.aggregate.parts: [matrix_outer_num, matrix_pinky_num]
+          shift: [0.0px, -0.4ky]
+  # Combination preview showing outline and keys.
+  backplate_border:
+    - name: border
+    - operation: subtract
+      name: _mount_thumb
+    - operation: subtract
+      name: _mount_top
+    - operation: subtract
+      name: _mount_rotary
+    - operation: subtract
+      name: _mount_corner
+  # Pure key outline.
+  _enclosure_raw:
+    - what: rectangle
+      where: true
+      size: [ex, ey]
+  # Key outlines with 0.5mm removed to show key overlaps.
+  _enclosure_keys-main:
+    - what: rectangle
+      where: true
+      size: [kx+1,ky+1]
+  _enclosure_keys-thumb:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: thumbs_space_cluster
+          shift: [-0.75ky,0.5kx]
+        - ref: thumbs_space_cluster
+          shift: [0.75ky,0.5kx]
+        - ref: thumbs_space_cluster
+          shift: [0.75ky,-0.5kx]
+        - ref: thumbs_space_cluster
+          shift: [-0.75ky,-0.5kx]
+  enclosure_keys:
+    - name: _enclosure_keys-main
+    - operation: add
+      name: _enclosure_keys-thumb
+  _enclosure_top-left-corner:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_num
+          shift: [-0.5ex,0.5ey]
+        - ref: matrix_outer_num
+          shift: [0.5ex,0.5ey]
+        - ref: matrix_pinky_num
+          shift: [0.5ex-1,0.5ey]
+        - ref: matrix_ring_num
+          shift: [-0.5ex+0.5,0.5ey]
+        - ref: matrix_ring_num
+          shift: [0.5ex-2,0.5ey]
+        - ref: matrix_ring_num
+          shift: [0.5ex-2,-0.5ey]
+  _enclosure_bottom-left-corner:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_outer_bottom
+          shift: [-0.5ex,-0.5ey]
+        - ref: matrix_ring_mod
+          shift: [-0.5ex,-0.5ey]
+        - ref: matrix_ring_mod
+          shift: [-0.5ex,0.5ey]
+  _enclosure_controller:
+    - what: polygon
+      operation: stack
+      points:
+        - ref: matrix_index_num
+          shift: [0.5ex,0.5py]
+        - ref: matrix_index_num
+          shift: [2.42px+2.5,0.5py]
+        - ref: thumbs_space_cluster
+          shift: [0.5ey,-0.5ex]
+        - ref: thumbs_space_cluster
+          shift: [-0.5ex,-0.5ey]
+        - ref: thumbs_layer_cluster
+          shift: [0.5px,-0.5ey]
+        - ref: thumbs_layer_cluster
+          shift: [-0.5ex,-0.5ey]
+        - ref: thumbs_layer_cluster
+          shift: [-0.65ex,0]
+  # Combination preview showing outline and keys.
+  enclosure_border:
+    - name: _enclosure_raw
+    - operation: add
+      name: _enclosure_top-left-corner
+    - operation: add
+      name: _enclosure_bottom-left-corner
+    - operation: add
+      name: _enclosure_controller
+      fillet: 1
+  # Combination preview showing outline and keys.
+  enclosure_combo:
+    - name: enclosure_border
+    - operation: subtract
+      name: enclosure_keys
+  enclosure_wall:
+    - name: enclosure_border
+    - operation: subtract
+      name: border
+  # Standoffs
+  _insert_thumb:
+    - what: circle
+      radius: insert_size
+      where:
+        ref: matrix_inner_bottom
+        shift: [0.65px, -0.65ky]
+  _insert_top:
+    - what: circle
+      radius: insert_size
+      where:
+          ref: matrix_inner_num
+          shift: [1.25px, 0.1ky]
+  _insert_rotary:
+    - what: circle
+      radius: insert_size
+      where:
+        ref: matrix_outer_bottom
+        shift: [0.25px, -0.7ky]
+  _insert_corner:
+    - what: circle
+      radius: insert_size
+      where:
+        - ref.aggregate.parts: [matrix_outer_num, matrix_pinky_num]
+          shift: [0.0px, -0.4ky]
+  # Combined insert outline.
+  insert_group:
+    - name: _insert_thumb
+    - operation: add
+      name: _insert_top
+    - operation: add
+      name: _insert_rotary
+    - operation: add
+      name: _insert_corner
+  _standoff_thumb:
+    - what: circle
+      radius: standoff_size
+      where:
+        ref: matrix_inner_bottom
+        shift: [0.65px, -0.65ky]
+  _standoff_top:
+    - what: circle
+      radius: standoff_size
+      where:
+          ref: matrix_inner_num
+          shift: [1.25px, 0.1ky]
+  _standoff_rotary:
+    - what: circle
+      radius: standoff_size
+      where:
+        ref: matrix_outer_bottom
+        shift: [0.25px, -0.7ky]
+  _standoff_corner:
+    - what: circle
+      radius: standoff_size
+      where:
+        - ref.aggregate.parts: [matrix_outer_num, matrix_pinky_num]
+          shift: [0.0px, -0.4ky]
+  # Combined insert outline.
+  standoff_group:
+    - name: _standoff_thumb
+    - operation: add
+      name: _standoff_top
+    - operation: add
+      name: _standoff_rotary
+    - operation: add
+      name: _standoff_corner
+  standoffs:
+    - name: standoff_group
+    - operation: subtract
+      name: insert_group
+  _foot_top_left:
+    - what: circle
+      radius: foot_size
+      where.ref: matrix_outer_num
+  _foot_top_right:
+    - what: circle
+      radius: foot_size
+      where.ref: matrix_inner_num
+  _foot_bottom_left:
+    - what: circle
+      radius: foot_size
+      where.ref: matrix_outer_bottom
+  _foot_bottom_right:
+    - what: circle
+      radius: foot_size
+      where.ref: thumbs_space_cluster
+  # Combined insert outline.
+  foot_border:
+    - name: border
+    - operation: subtract
+      name: _insert_thumb
+    - operation: subtract
+      name: _insert_top
+    - operation: subtract
+      name: _insert_rotary
+    - operation: subtract
+      name: _insert_corner
+    - operation: subtract
+      name: _foot_top_left
+    - operation: subtract
+      name: _foot_top_right
+    - operation: subtract
+      name: _foot_bottom_left
+    - operation: subtract
+      name: _foot_bottom_right
 pcbs:
   typeboy:
-    outlines.main.outline: _border
+    outlines.main.outline: border
     footprints:
       # Hotswap Choc keys.
       choc_hotswap:
@@ -188,17 +427,17 @@ pcbs:
           shift: [0.85px,-0.6py+0.012491]
           rotate: -90
       lowproro:
-        what: lowproro
+        what: lowprothumb
         params:
           A: MISO
-          PUSH: NFC0
           COM: GND
+          PUSH: NFC0
           B: NFC1
         where:
           ref: matrix_pinky_bottom
-          shift: [-0.05px+0.35, -0.6py+1.5]
+          shift: [-0.05px+0.35, -0.925py]
           #rotate: -16.5
-          rotate: -13
+          rotate: 167
       power:
         what: spdt
         params:
@@ -206,7 +445,7 @@ pcbs:
           to: BATIN
         where:
           ref: matrix_inner_num
-          shift: [1.35px, 0.45ky]
+          shift: [1.35px, 0.45ky+1]
           rotate: 180
       reset:
         what: buttonrightangle
@@ -215,7 +454,7 @@ pcbs:
           to: RST
         where:
           ref: matrix_inner_num
-          shift: [0.65px, 0.4275ky]
+          shift: [0.65px, 0.4275ky+1]
       mounting_thumb:
         what: mountinghole
         where:
@@ -236,3 +475,27 @@ pcbs:
         where:
           - ref.aggregate.parts: [matrix_outer_num, matrix_pinky_num]
             shift: [0.0px, -0.4ky]
+  typeboy_backplate:
+    outlines.main.outline: backplate_border
+    footprints:
+      # Hotswap Choc keys.
+      choc_hotswap:
+        what: chocbackplate
+        where: true
+      # Through Hole or SMD Diodes
+      diode:
+        what: diodebackplate
+        where: true
+        adjust:
+          shift: [0, -5]
+      power:
+        what: spdtbackplate
+        where:
+          ref: matrix_inner_num
+          shift: [1.35px, 0.45ky+1]
+          rotate: 180
+      reset:
+        what: buttonrightanglebackplate
+        where:
+          ref: matrix_inner_num
+          shift: [0.65px, 0.4275ky+1]
