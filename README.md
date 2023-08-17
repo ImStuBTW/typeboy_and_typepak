@@ -1,5 +1,7 @@
 # The TypeBoy & TypePak
 
+![The TypeBoy & TypePak Laying Next To Several GBA Cartridges](images/TypeBoy-Hero.jpg)
+
 The TypeBoy is a fairly standard split ergonomic keyboard with a very non-standard microcontroller setup. Your eyes don't deceive you: This is a keyboard that needs a Game Boy Advance cartridge to function.
 
 More specifically, it needs a TypePak! I've been spending a lot of time in the Ergogen keyboard layout generator lately, and I recently finished building a Sanni Open Source Cartridge Reader. These two worlds collided in my head and it dawned on me that a keyboard's microcontroller stack could probably fit in the shell of a Game Boy cartridge. A bit of tinkering in KiCAD later, and suddenly this monstrosity the TypePak was born.
