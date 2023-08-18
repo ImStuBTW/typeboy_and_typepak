@@ -6,15 +6,15 @@ The TypeBoy is a fairly standard split ergonomic keyboard with a very non-standa
 
 More specifically, it needs a TypePak! I've been spending a lot of time in the Ergogen keyboard layout generator lately, and I recently finished building a Sanni Open Source Cartridge Reader. These two worlds collided in my head and it dawned on me that a keyboard's microcontroller stack could probably fit in the shell of a Game Boy cartridge. A bit of tinkering in KiCAD later, and suddenly this monstrosity the TypePak was born.
 
-## The TypePak
+## [The TypePak](typepak/README.md)
 
 The TypePak is a keyboard daughterboard with a XIAO nRF52840 Bluetooth microcontroller, a SN74HC595DT shift register, a LS011B7DH03 Sharp Memory Display, and a 401020 lipo battery designed to be housed inside of a standard Game Boy Advance cartridge. Every pin is broken out in case you find some novel use for SPI, or chose not to use the screen. The battery trace and reset pins are also broken out so that you can put a power and reset switch on the main keyboard. You'll need to use a tool similar to a Dremel in order to cut a USB-C port in the side of the cartridge shell.
 
-## The TypeBoy
+## [The TypeBoy](typeboy/README.md)
 
 The TypeBoy is a fairly standard split keyboard with a 6x4+5 column staggered layout. The big difference being that it has a 32 pin slot for the Game Boy Advance cartrdige. The connector appears on both sides of the board, with traces and vias making the connector pinout reversible. The other notable feature is a SLLB510100 thumb switch.
 
-## ZMK-Config
+## [ZMK-Config](/zmk-config)
 
 The ZMK wireless keyboard firmware configuration for this board is relatively standard. The software doesn't have any clue that it's being housed on an odd removable cartridge. Items to note are the LS011B7DH03 display using ZMK's built in Display support instead of the Nice!View wrapper one may be more familiar with, 74HC595 shift register support to add additional column output pins, and a [composite](https://zmk.dev/docs/config/kscan#composite-driver) key scan driver for using both a traditional keyboard matrix and direct pin reading for the thumb wheel.
 
