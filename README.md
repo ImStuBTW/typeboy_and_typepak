@@ -1,6 +1,6 @@
 # The TypeBoy & TypePak
 
-![The TypeBoy & TypePak Laying Next To Several GBA Cartridges](images/TypeBoy-Hero.jpg)
+![The TypeBoy & TypePak Laying Next To Several GBA Cartridges.](images/TypeBoy-Hero.jpg)
 
 The TypeBoy is a fairly standard split ergonomic keyboard with a very non-standard microcontroller setup. Your eyes don't deceive you: This is a keyboard that needs a Game Boy Advance cartridge to function.
 
@@ -8,11 +8,15 @@ More specifically, it needs a TypePak! I've been spending a lot of time in the E
 
 ## [The TypePak](typepak/README.md)
 
+![The TypePak, a microcontroller and black and white display inside of a Game Boy Advance cartridge.](images/TypePak-Closeup.jpg)
+
 The TypePak is a keyboard daughterboard with a XIAO nRF52840 Bluetooth microcontroller, a SN74HC595DT shift register, a LS011B7DH03 Sharp Memory Display, and a 401020 lipo battery designed to be housed inside of a standard Game Boy Advance cartridge. Every pin is broken out in case you find some novel use for SPI, or chose not to use the screen. The battery trace and reset pins are also broken out so that you can put a power and reset switch on the main keyboard. You'll need to use a tool similar to a Dremel in order to cut a USB-C port in the side of the cartridge shell.
 
 ## [The TypeBoy](typeboy/README.md)
 
-The TypeBoy is a fairly standard split keyboard with a 6x4+5 column staggered layout. The big difference being that it has a 32 pin slot for the Game Boy Advance cartrdige. The connector appears on both sides of the board, with traces and vias making the connector pinout reversible. The other notable feature is a SLLB510100 thumb switch.
+![The TypeBoy, a keyboard with a cartridge slot.](images/TypeBoy-Angled.jpg)
+
+The TypeBoy is a typical split keyboard with a 6x4+5 column staggered layout. The big difference being that it has a 32 pin slot for the Game Boy Advance cartrdige. The connector appears on both sides of the board, with traces and vias making the connector pinout reversible. The other notable feature is a SLLB510100 thumb switch.
 
 ## [ZMK-Config](/zmk-config)
 
