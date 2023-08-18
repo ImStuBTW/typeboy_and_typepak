@@ -18,7 +18,7 @@ The primary output is the TypeBoy PCB. Ergogen will create an unrouted KiCAD fil
 
 Ergogen also has the ability to output vector outline files or 3D case files. The TypeBoy’s config outputs several outlines, but the case design I had in mind for this board were a little too complicated tor Ergogen itself. I ended up building the TypeBoy’s case in AutoDesk Fusion 360.
 
-![The TypeBoy's Case](../images/TypeBoy-Case.png)
+![The TypeBoy's Case](../images/TypeBoy-Case.jpg)
 
 There’s one unusual output Ergogen produces in this design. It makes a “backplate” PCB. This is a bit of an unusual concept I’ve experimented with for my last few builds. It’s loosely based off the [Horizon](https://github.com/skarrmann/horizon) keyboard, with the intention of providing cutouts for diodes and footprint switches when building a case.
 
