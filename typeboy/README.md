@@ -40,4 +40,16 @@ There's also several "backplate" footprints. These are footprints which just hav
 
 ## Build of Materials
 
-TBD
+| Part                             | Amount         | Price       | Link |
+| -------------------------------- | -------------- | --------------------- | ---- |
+| TypeBoy PCB Via JLCPCB           | 1 (5 PCB Pack) | $20.00 USD (Incl. Slow Shipping) | https://jlcpcb.com |
+| Game Boy Cartridge Slot          | 2              | $5.00 USD  | https://www.aliexpress.us/item/2255800103876564.html |
+| SLLB510100 Thumb Switch          | 2              | $8.00 USD   | https://www.mouser.com/ProductDetail/Hirose-Connector/FH12A-10S-0.5SH55 |
+| Right Angle Pushbutton           | 2              | $1.00 USD   | https://www.mouser.com/ProductDetail/642-MJTP1117 |
+| Right Angle Switch               | 2              | $1.50 USD   | https://www.mouser.com/ProductDetail/612-EG1213 |
+| Choc Hotswap Sockets             | 58             | $12.00 USD  | https://www.aliexpress.us/item/3256803687338432.html |
+| 1N4148 T4 Diodes                 | 58             | $3.00 USD   | https://www.aliexpress.us/item/2255800498728983.html |
+| Choc Switches                    | 58             | $28.00 USD  | https://www.aliexpress.us/item/3256805260407528.html |
+| Choc Keycaps                     | Alphas + Mods  | $~60.00 USD | https://mkultra.click/mbk-legend-keycaps/ |
+| 3D Printed Case                  | Buy Your Buddy Some Filament | $~20.00 USD | https://github.com/ImStuBTW/typeboy_and_typepak/tree/main/typeboy/output/case |
+| Bumpons                          | 1 Pack  | $10.00 USD | https://www.amazon.com/Adhesive-Bumper-106-PC-Spherical-Square/dp/B06XPCLN23/ |

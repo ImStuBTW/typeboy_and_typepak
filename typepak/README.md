@@ -30,4 +30,17 @@ Cutting a hole in the side of the cartridge won't be enough. You'll also need to
 
 ## Build of Materials
 
-TBD.
+| Part                             | Amount         | Price       | Link |
+| -------------------------------- | -------------- | --------------------- | ---- |
+| TypePak PCB Via JLCPCB           | 1 (5 PCB Pack) | $2-4.00 USD | https://jlcpcb.com |
+| XIAO nRF52840 Microcontroller    | 1              | $10.00 USD  | https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/102010448/16652893 |
+| HFK110CT-ND Display Connector    | 1              | $1.35 USD   | https://www.digikey.com/en/products/detail/hirose-electric-co-ltd/FH12A-10S-0-5SH-55/1110331 |
+| 560PF Capacitor                  | 2              | $0.15 USD   | https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21C561JBANNNC/3887492 |
+| 1UF Capacitor                    | 2              | $0.10 USD   | https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B105KBFNNNG/3894467 |
+| 300 OHM Ferrite Beads            | 2              | $0.20 USD   | https://www.digikey.com/en/products/detail/vishay-dale/ILBB0805ER301V/2574914 |
+| SN74HC595 Shift Register         | 1              | $1.00 USD   | https://www.digikey.com/en/products/detail/vishay-dale/ILBB0805ER301V/2574914 |
+| LS011B7DH03 Sharp Memory Display | 1              | $15.00 USD  | https://www.aliexpress.us/item/3256801622787441.html |
+| 401020 LiPo Battery (80 mAh)     | 1              | $7.00 USD   | https://www.amazon.com/gp/product/B09FLX9VZD/ |
+| Game Boy Advance Cartridge Shell | 1              | $3.50 USD   | https://www.aliexpress.us/item/3256803793023444.html |
+
+The above table represents the parts needed to construct a single TypePak. You'll need to double everything except for the PCB order if you plan on making two. (JLCPCB fabricates PCBs in groups of 5 as a minimum.) If you're building two TypePaks, it's probably worth bumping the capacitor and ferrite bead orders up to 10. You don't want to have your entire project get stalled if you misplace one of the small components, and the bulk ordering pricing makes buying 4-6 units approximately the same cost as 10.
