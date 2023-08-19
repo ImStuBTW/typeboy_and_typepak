@@ -16,7 +16,7 @@ The TypePak is a keyboard daughterboard with a XIAO nRF52840 Bluetooth microcont
 
 ![The TypeBoy, a keyboard with a cartridge slot.](images/TypePak-Angled.jpg)
 
-The TypeBoy is a typical split keyboard with a 6x4+5 column staggered layout. The big difference being that it has a 32 pin slot for the Game Boy Advance cartrdige. The connector appears on both sides of the board, with traces and vias making the connector pinout reversible. The other notable feature is a SLLB510100 thumb switch.
+The TypeBoy is a typical split keyboard with a 6x4+5 column staggered layout. The big difference being that it has a 32 pin slot for the Game Boy Advance cartridge. The connector appears on both sides of the board, with traces and vias making the connector pinout reversible. The other notable feature is a SLLB510100 thumb switch.
 
 ## [ZMK-Config](/zmk-config)
 

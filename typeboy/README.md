@@ -4,7 +4,7 @@
 
 The TypeBoy is a four row, six column, five modifier column staggered split ergonomic keyboard. A 6x4+5 layout as the cool kids would say. Stop me if you've heard this one before, but it was inspired by [Josef Adamčík](https://josef-adamcik.cz/)'s [Sofle keyboard](https://josefadamcik.github.io/SofleKeyboard/).
 
-This keyboard was designed mostly as a testbed for the TypePak microcontroller cartridge.. It doesn't have too much going on outside of the Game Boy slot on the side. The only other peculiar hardware feature is the SLLB510100 thumb switch. It's a low profile slide switch that you can rotate to the left or right as well as pushing straight in. It's similar in purpose to a rotary encoder, but it just rocks back and forth instead of spinning. If you used a CD player around the turn of the century you probably know what to expect.
+This keyboard was designed mostly as a testbed for the TypePak microcontroller cartridge. It doesn't have too much going on outside of the Game Boy slot on the side. The only other peculiar hardware feature is the SLLB510100 thumb switch. It's a low profile slide switch that you can rotate to the left or right as well as pushing straight in. It's similar in purpose to a rotary encoder, but it just rocks back and forth instead of spinning. If you used a CD player around the turn of the century you probably know what to expect.
 
 ## Ergogen Outputs
 

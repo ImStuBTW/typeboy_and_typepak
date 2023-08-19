@@ -10,7 +10,7 @@ Unlike its companion TypeBoy, the TypePak was designed in KiCAD from scratch. Sa
 
 ![The TypePak PCB layout.](../images/TypePak-Diagram.png)
 
-The heart of the TypePak is a XIAO nRF52840 microcontroller. It handles all of the Bluetooth communication, the wireless battery charging, and USB connectivity. The XIAO "BLE" famously has several pins mouted in the middle of the board on its underside, so the TypePak has several small holes in the PCB to reach the reset, power, and NFC pins.
+The heart of the TypePak is a XIAO nRF52840 microcontroller. It handles all of the Bluetooth communication, the wireless battery charging, and USB connectivity. The XIAO "BLE" famously has several pins mounted in the middle of the board on its underside, so the TypePak has several small holes in the PCB to reach the reset, power, and NFC pins.
 
 There's a few additional pieces of hardware mounted onto the board. The TypePak features a LS011B7DH03 Sharp Memory Display. This is the same module found on the Nice!View keyboard display, but instead leverages karnadii's excellent [sharp_memory_display_breakout](https://github.com/karnadii/sharp_memory_display_breakout) circuit design. The microcontroller also takes advantage of a 74HC595 shift register to provide several more output pins. All of this is powered by a 401020 LiPo battery.
 
@@ -24,7 +24,7 @@ Speaking of which, the TypePak does not have a built in power switch or reset bu
 
 The TypePak is enclosed inside of an aftermarket Game Boy Advance cartridge. Believe it or not, these cartridges typically did not feature cutouts for USB-C ports. You'll need to drill one into the side of your cartridge so that the TypePak can charge and be flashed with new firmware.
 
-![The top half of the TypePak's case with several milimeters of plastic shaved away.](../images/TypePak-Top.jpg)
+![The top half of the TypePak's case with several millimeters of plastic shaved away.](../images/TypePak-Top.jpg)
 
 Cutting a hole in the side of the cartridge won't be enough. You'll also need to shave away some of the inside of the top of the case. You should be able to leave most of the exterior of the top untouched. There's *just* enough material on the inside of the case to make everything fit. The cartridge may bow slightly, but you should be able to get all the tabs locked securely into place and the fastener screw fully secured into place. Aftermarket cartridges are fairly cheap, so you may want to buy an extra to practice on.
 
