@@ -38,7 +38,7 @@ Cutting a hole in the side of the cartridge won't be enough. You'll also need to
 | 560PF Capacitor                  | 2              | $0.15 USD   | https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21C561JBANNNC/3887492 |
 | 1UF Capacitor                    | 2              | $0.10 USD   | https://www.digikey.com/en/products/detail/samsung-electro-mechanics/CL21B105KBFNNNG/3894467 |
 | 300 OHM Ferrite Beads            | 2              | $0.20 USD   | https://www.digikey.com/en/products/detail/vishay-dale/ILBB0805ER301V/2574914 |
-| SN74HC595 Shift Register         | 1              | $1.00 USD   | https://www.digikey.com/en/products/detail/vishay-dale/ILBB0805ER301V/2574914 |
+| SN74HC595 Shift Register         | 1              | $1.00 USD   | https://www.digikey.com/en/products/detail/texas-instruments/SN74HC595DT/1571266 |
 | LS011B7DH03 Sharp Memory Display | 1              | $15.00 USD  | https://www.aliexpress.us/item/3256801622787441.html |
 | 401020 LiPo Battery (80 mAh)     | 1              | $7.00 USD   | https://www.amazon.com/gp/product/B09FLX9VZD/ |
 | Game Boy Advance Cartridge Shell | 1              | $3.50 USD   | https://www.aliexpress.us/item/3256803793023444.html |
